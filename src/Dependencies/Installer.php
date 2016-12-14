@@ -36,6 +36,7 @@ class Installer
                         echo sprintf("%s\n", $inspectionDetails);
                     }
                 }
+                echo "\n";
 
                 ++$count;
             }
