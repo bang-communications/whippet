@@ -17,4 +17,13 @@ class WhippetJson extends Base
     {
         return $this->data['src'];
     }
+
+    public function getApiHost()
+    {
+        if (array_key_exists('inspections_api', $this->data) && array_key_exists('host', $this->data['inspections_api'])) {
+            return $this->data['inspections_api']['host'];
+        } else {
+            return 'https://security.dxw.com';
+        }
+    }
 }

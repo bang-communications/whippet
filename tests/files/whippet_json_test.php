@@ -36,4 +36,31 @@ class Files_WhippetJson_Test extends PHPUnit_Framework_TestCase
             'plugins' => 'git@git.dxw.net:wordpress-plugins/',
         ], $whippetJson->getSources());
     }
+
+    public function testGetApiHost()
+    {
+        $whippetJson = new \Dxw\Whippet\Files\WhippetJson([
+            'inspections_api' => [
+                'host' => 'http://localhost:8000',
+            ],
+        ]);
+
+        $this->assertEquals('http://localhost:8000', $whippetJson->getApiHost());
+    }
+
+    public function testGetApiHostNoKey()
+    {
+        $whippetJson = new \Dxw\Whippet\Files\WhippetJson([]);
+
+        $this->assertEquals('https://security.dxw.com', $whippetJson->getApiHost());
+    }
+
+    public function testGetApiHostNoHostKey()
+    {
+        $whippetJson = new \Dxw\Whippet\Files\WhippetJson([
+            'inspections_api' => []
+        ]);
+
+        $this->assertEquals('https://security.dxw.com', $whippetJson->getApiHost());
+    }
 }
